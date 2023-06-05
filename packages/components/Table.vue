@@ -1,9 +1,12 @@
 <template>
   <el-table
+    v-loading="loading"
+    element-loading-text="拼命加载中"
     :data="tableData"
     max-height="500"
     style="width: 100%"
     border
+    @selection-change="handleSelectionChange"
   >
     <el-table-column
       type="selection"
@@ -50,13 +53,12 @@
     />
     <el-table-column label="操作" width="120" align="center">
       <template slot-scope="scope">
-    
         <el-button
           type="text"
-          @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          @click="handleEdit(scope.row)">编辑</el-button>
         <el-button
           type="text"
-          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          @click="handleDelete(scope.row)">删除</el-button>
       </template>
     </el-table-column>
  
@@ -64,28 +66,41 @@
 </template>
 
 <script>
+import store from '../store/index.js'
 export default{
-  props:{
-    tableData:{
-      default:()=>[],
-      type:Array
+  data(){
+    return{
+      multipleSelection:[]
     }
   },
   methods:{
     handleEdit(){
       console.log('编辑')
     },
-    handleDelete(){
+    handleDelete(row){
       this.$confirm('此操作将永久删除, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
+        console.log('删除参数',row.id)
         this.$message({
           type: 'success',
           message: '删除成功!'
         });
       }).catch(e=>{})
+    },
+    handleSelectionChange(val) {
+      store.commit('SET_MULTIPLESELECTION',val)
+    },
+    
+  },
+  computed:{
+    tableData(){
+      return store.state.tableData
+    },
+    loading(){
+      return store.state.loading
     }
   }
 }

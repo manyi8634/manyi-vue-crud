@@ -1,9 +1,9 @@
 {
   "name": "manyi-vue-crud",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "dev": "vue-cli-service serve",
     "lib": "vue-cli-service build --target lib --name index --dest lib packages/index.vue",
     "update": "npm run lib && npm publish",
     "update-test": "npm run lib && npm publish --tag=alpha"
@@ -21,7 +21,8 @@
     "sass": "^1.62.1",
     "sass-loader": "^13.3.1",
     "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "vuex": "^3.6.2"
   },
   "eslintConfig": {
     "root": true,
