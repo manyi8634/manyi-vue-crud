@@ -1,15 +1,12 @@
 {
   "name": "manyi-vue-crud",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1-alpha.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "core-js": "^3.8.3",
-    "vue": "^2.6.14"
+    "lib": "vue-cli-service build --target lib --name index --dest lib packages/index.vue",
+    "update": "npm run lib && npm publish",
+    "update-test": "npm run lib && npm publish --tag=alpha"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -17,8 +14,13 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "core-js": "^3.8.3",
+    "element-ui": "^2.15.13",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.3.1",
+    "vue": "^2.6.14",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
@@ -38,6 +40,21 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not dead"
-  ]
+    "not ie <= 8"
+  ],
+  "main": "lib/index.umd.min.js",
+  "files": [
+    "/lib/index.umd.min.js",
+    "/lib/index.css",
+    "README.md"
+  ],
+  "homepage": "http://element.eleme.io",
+  "keywords": [
+    "zhangmanyi",
+    "manyi",
+    "manyi-vue-crud",
+    "vue",
+    "crud"
+  ],
+  "license": "MIT"
 }

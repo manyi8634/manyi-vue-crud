@@ -1,5 +1,8 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
+
+import ManyiCrud from './components/index'
+Vue.use(ManyiCrud)
 
 Vue.config.productionTip = false
 

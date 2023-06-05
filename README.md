@@ -1,24 +1,18 @@
-# manyi-vue-crud
+## 使用文档
+> https://manyi8634.github.io/vue-crud-doc
 
-## Project setup
-```
-npm install
-```
+## 安装教程
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+```npm
+npm install manyi-vue-crud / yarn add manyi-vue-crud
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+```js
+import ManyiCrud from 'manyi-vue-crud'
+import 'manyi-vue-crud/lib/index.css'
+
+Vue.use(ManyiCrud)
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 其他
+> 基于element-ui封装的crud业务组件，欢迎下载使用！
