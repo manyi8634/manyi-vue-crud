@@ -2,29 +2,40 @@
   <el-pagination
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
-    :current-page="currentPage"
+    :current-page="pageNum"
     :page-sizes="[5, 10, 20, 50]"
-    :page-size="5"
+    :page-size="pageSize"
     layout="total, sizes, prev, pager, next, jumper"
-    :total="40"
+    :total="total"
     style="margin:15px"
-  ></el-pagination>
+  />
 </template>
 
 <script>
+import store from '../store/index.js'
 export default {
   methods: {
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      // console.log(`每页 ${val} 条`);
+      store.commit('SET_PAGESIZE',val)
+      store.dispatch('select')
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      // console.log(`当前页: ${val}`);
+      store.commit('SET_PAGENUM',val)
+      store.dispatch('select')
     }
   },
-  data() {
-    return {
-      currentPage: 4
-    };
+  computed:{
+    total(){
+      return store.state.tableData.total
+    },
+    pageNum(){
+      return store.state.pageNum
+    },
+    pageSize(){
+      return store.state.pageSize
+    }
   }
 };
 </script>

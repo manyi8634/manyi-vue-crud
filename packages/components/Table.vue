@@ -21,19 +21,22 @@
     <el-table-column
       prop="userName"
       label="用户名"
+      show-overflow-tooltip
       align="center"
     />
     <el-table-column
       prop="email"
       label="邮箱"
-      align="center"
       width="200"
+      show-overflow-tooltip
+      align="center"
     />
     <el-table-column
       prop="phoneNum"
       label="手机号"
-      align="center"
       width="150"
+      show-overflow-tooltip
+      align="center"
     />
     <el-table-column
       prop="status"
@@ -49,6 +52,7 @@
       prop="createTime"
       label="创建时间"
       width="150"
+      show-overflow-tooltip
       align="center"
     />
     <el-table-column label="操作" width="120" align="center">
@@ -78,12 +82,12 @@ export default{
       console.log('编辑')
     },
     handleDelete(row){
-      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+      this.$confirm('确认删除吗, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        console.log('删除参数',row.id)
+        store.dispatch('delete',row.id)
         this.$message({
           type: 'success',
           message: '删除成功!'
@@ -97,7 +101,7 @@ export default{
   },
   computed:{
     tableData(){
-      return store.state.tableData
+      return store.state.tableData.data
     },
     loading(){
       return store.state.loading

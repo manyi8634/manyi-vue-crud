@@ -1,6 +1,6 @@
 {
   "name": "manyi-vue-crud",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "dev": "vue-cli-service serve",
@@ -49,7 +49,7 @@
     "/lib/index.css",
     "README.md"
   ],
-  "homepage": "http://element.eleme.io",
+  "homepage": "https://manyi8634.github.io/doc/manyi-vue-crud/",
   "keywords": [
     "zhangmanyi",
     "manyi",

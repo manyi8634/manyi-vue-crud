@@ -1,8 +1,8 @@
 <template>
   <div class="manyi-wrap">
-    <Form />
-    <Table :tableData='tableData'/>
-    <Pagination class="pagn"/>
+    <Form/>
+    <Table/>
+    <Pagination class="manyi—Pagination"/>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .pagn{
+  .manyi—Pagination{
     align-self: flex-end;
   }
 }

@@ -29,14 +29,12 @@
       </el-col>
     </el-row>
     <el-form-item>
-      <el-row type="flex" justify="center" align="center">
-        <el-col :span="12" >
-          <el-button type="primary" icon="el-icon-search" @click="handleSearch(form)">查询</el-button>
-          <el-button type="primary" icon="el-icon-plus" @click="handleAdd">新增</el-button>
-          <el-button type="danger" icon="el-icon-delete" :disabled="multipleSelection.length===0" @click="handleDelete">批量删除</el-button>
-          <el-button icon="el-icon-refresh" @click="resetForm('ruleForm')">重置</el-button>
-        </el-col>
-      </el-row>
+      <div style="display: flex;justify-content: center;align-items: center;">
+        <el-button type="primary" icon="el-icon-search" @click="handleSearch">查询</el-button>
+        <el-button type="primary" icon="el-icon-plus" @click="handleAdd">新增</el-button>
+        <el-button type="danger" icon="el-icon-delete" :disabled="multipleSelection.length===0" @click="handleDelete">批量删除</el-button>
+        <el-button icon="el-icon-refresh" @click="resetForm('ruleForm')">重置</el-button>
+      </div>
     </el-form-item>
    
   </el-form>
@@ -66,40 +64,35 @@ export default {
     };
   },
   mounted(){
-    store.dispatch('handleSearch',this.form)
+    // 初始化查询
+    store.dispatch('select',{form:this.form,resetPage:true})
   },
   methods: {
+    // 用户点击查询
     handleSearch(){
-      store.dispatch('handleSearch',this.form)
+      store.dispatch('select',{form:this.form,resetPage:true})
     },
+    // 用户点击新增
     handleAdd(){
       console.log("新增")
     },
+    // 用户点击批量删除
     handleDelete(){
-      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+      this.$confirm('确认批量删除吗？, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
         const params = store.state.multipleSelection.map(item=>item.id)
-        console.log('批量删除参数',params)
-
+    
+        store.dispatch('delete',params)
         this.$message({
           type: 'success',
           message: '删除成功!'
         });
       }).catch(e=>{})
     },
-    submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
+    // 用户点击重置
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
@@ -111,6 +104,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
